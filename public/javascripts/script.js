@@ -8,9 +8,22 @@ for (let i = 0; i < mashPotatoes.length; i++) {
 
 // Iteration 1 using callbacks
 addFood(steak[0], '#steak', () => {
-  // ... your code here
   addFood(steak[1], '#steak', () => {
+    addFood(steak[2], '#steak', () => {
+      addFood(steak[3], '#steak', () => {
+        addFood(steak[4], '#steak', () => {
+          addFood(steak[5], '#steak', () => {
+            addFood(steak[6], '#steak', () => {
+                addFood(steak[7], '#steak', () => {
+                  document.querySelector('#table').innerHTML += `<img src="./public/images/steak.jpg">`;
 
+                  
+              })
+            })  
+          })
+        })
+      })
+    })
   })
 });
 
@@ -18,14 +31,34 @@ addFood(steak[0], '#steak', () => {
 
 // Iteration 2 using `.then()`
 addFood(mashPotatoes[0], '#mashPotatoes').then(() => {
-  // ... your code here
-  addFood(mashPotatoes[1], '#mashPotatoes')
+  addFood(mashPotatoes[1], '#mashPotatoes').then(() => {
+    addFood(mashPotatoes[2], '#mashPotatoes').then(() => {
+      addFood(mashPotatoes[3], '#mashPotatoes').then(() => {
+        addFood(mashPotatoes[4], '#mashPotatoes').then(() => {
+          document.querySelector('#table').innerHTML += `<img src="./public/images/mashPotatoes.jpg">`;
+        })
+      })
+    })
+  })
 });
 
 // Iteration 3 using async and await
 
-  async function makeFood(step) {
-    // ... your code here
+ 
+  async function makeFood(steps, id) {
+    for (let i = 0; i < steps.length; i++) {
+      console.log(steps[i])
+      await addFood(steps[i], id)
+    }
+    document.querySelector('#table').innerHTML += `<img src="./public/images/brusselSprouts.jpg">`;
+    setTimeout(() => { alert('Dinner is served!') }, 1000);
+    // loop over the steps
+    // for each step call addFood(step, id)
+
     
   }
-  makeFood(eachStep);
+  makeFood(brusselSprouts, '#brusselSprouts');
+
+  // your are gonna use makeFood for each dish
+  // call it for: steak, mashPotatoes and brusselSprouts
+  // Promise.all([here goes an arrays of promises])
